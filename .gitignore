@@ -21,6 +21,7 @@ coverage
 /vendor
 /.idea
 /.tools
+/src/entries
 .vscode/*
 .idea
 .DS_Store
@@ -34,6 +35,7 @@ Homestead.json
 Homestead.yaml
 .phpunit.result.cache
 *.tgz
+
 ############################################################
 # Node Module und Build-Artefakte
 ############################################################
