@@ -1,5 +1,13 @@
 {
     "sc": {
-        "ui": {}
+        "ui": {
+            "theme-toggle": {
+                "ariaLabel": "Themenumschalter",
+                "label": {
+                    "light": "Hellen Modus aktivieren",
+                    "dark": "Dunklen Modus aktivieren"
+                }
+            }
+        }
     }
 }

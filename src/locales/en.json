@@ -1,5 +1,13 @@
 {
     "sc": {
-        "ui": {}
+        "ui": {
+            "theme-toggle": {
+                "ariaLabel": "Theme Toggle",
+                "label": {
+                    "light": "Activate Light Mode",
+                    "dark": "Activate Dark Mode"
+                }
+            }
+        }
     }
 }
