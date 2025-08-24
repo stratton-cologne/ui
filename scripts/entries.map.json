@@ -1,0 +1,6 @@
+{
+    "theme-switcher": "theme-toggle.vue",
+    "theme-toggle": "theme-toggle.vue",
+    "breadcrumb": "breadcrumb.vue",
+    "dropdown": "dropdown.vue"
+}
