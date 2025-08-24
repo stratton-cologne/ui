@@ -12,6 +12,10 @@
                     "dark": "Dunklen Modus aktivieren"
                 }
             },
+            "tab-panel": {
+                "sectionLabel": "Sektionen",
+                "empty": "Keine Tabs definiert."
+            },
             "dropdown": { "ariaToggle": "Menü öffnen" },
             "user-dropdown": {
                 "ariaToggle": "Kontomenü für {name} öffnen",

@@ -8,6 +8,7 @@ export { default as Breadcrumb } from "./entries/breadcrumb";
 export { default as ThemeToggle } from "./entries/theme-toggle";
 export { default as ThemeSwitcher } from "./entries/theme-toggle";
 export { default as Dropdown } from "./components/dropdown.vue";
+export { default as TabPanel } from "./components/tab-panel.vue";
 
 // icons
 export { default as Icon } from "./components/icon.vue";

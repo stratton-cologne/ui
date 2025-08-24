@@ -12,6 +12,10 @@
                     "dark": "Activate Dark Mode"
                 }
             },
+            "tab-panel": {
+                "sectionLabel": "Sections",
+                "empty": "No tabs defined."
+            },
             "dropdown": { "ariaToggle": "Open menu" },
             "user-dropdown": {
                 "ariaToggle": "Open account menu for {name}",
