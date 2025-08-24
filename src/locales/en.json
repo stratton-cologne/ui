@@ -7,6 +7,13 @@
                     "light": "Activate Light Mode",
                     "dark": "Activate Dark Mode"
                 }
+            },
+            "dropdown": { "ariaToggle": "Open menu" },
+            "user-dropdown": {
+                "ariaToggle": "Open account menu for {name}",
+                "viewAccount": "View account",
+                "logout": "Sign out",
+                "user": "User"
             }
         }
     }

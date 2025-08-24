@@ -7,6 +7,13 @@
                     "light": "Hellen Modus aktivieren",
                     "dark": "Dunklen Modus aktivieren"
                 }
+            },
+            "dropdown": { "ariaToggle": "Menü öffnen" },
+            "user-dropdown": {
+                "ariaToggle": "Kontomenü für {name} öffnen",
+                "viewAccount": "Konto anzeigen",
+                "logout": "Abmelden",
+                "user": "Nutzer"
             }
         }
     }
