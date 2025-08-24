@@ -1,6 +1,10 @@
 {
     "sc": {
         "ui": {
+            "breadcrumb": {
+                "ariaLabel": "Breadcrumb",
+                "separator": "›"
+            },
             "theme-toggle": {
                 "ariaLabel": "Theme Toggle",
                 "label": {
