@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { IconProps } from '../icons/_core/types'
-import * as registry from '../icons' // index.ts (siehe unten)
+import * as registry from '../icons'
 
-const props = defineProps<IconProps & { name?: string; icon?: any }>()
+/* ⬇︎ WICHTIG: class/style NICHT als Prop schlucken */
+type PublicIconProps = Omit<IconProps, 'class' | 'style'> & { name?: string; icon?: any }
+const props = defineProps<PublicIconProps>()
 
 const Comp = computed(() => {
     if (props.icon) return props.icon
     if (!props.name) return null
     const key = props.name.toLowerCase()
-    // registry exportiert { Sun, Moon, ... } + default map
     return (registry as any).default?.[key] ?? (registry as any)[pascal(key)] ?? null
 })
-
 function pascal(s: string) {
     return s.replace(/(^\w|[-_]\w)/g, m => m.replace(/[-_]/, '').toUpperCase())
 }

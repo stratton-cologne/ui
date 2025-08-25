@@ -1,4 +1,4 @@
-// index.ts
+// @file: src/index.ts
 
 export * from "./composables/useTheme";
 export * from "./i18n";
@@ -13,6 +13,6 @@ export { default as TabPanel } from "./components/tab-panel.vue";
 // icons
 export { default as Icon } from "./components/icon.vue";
 export * as icons from "./icons";
-export { Sun, Moon, Menu, MenuSolid, MenuHero } from "./icons";
+export { Sun, Moon, Menu, MenuSolid, MenuHero, Home } from "./icons";
 
 export { default } from "./entries/theme-toggle";
