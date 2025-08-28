@@ -15,6 +15,6 @@ export { default as SearchField } from "./components/search.vue";
 // icons
 export { default as Icon } from "./components/icon.vue";
 export * as icons from "./icons";
-export { Sun, Moon, Menu, MenuSolid, MenuHero, Home } from "./icons";
+export { Sun, Moon, Menu, MenuSolid, MenuHero, Home, Search } from "./icons";
 
 export { default } from "./entries/theme-toggle";

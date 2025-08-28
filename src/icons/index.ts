@@ -13,6 +13,7 @@ export { default as Share } from "./share";
 export { default as Ellipsis } from "./ellipsis";
 export { default as ChevronDown } from "./chevron-down";
 export { default as ChevronUp } from "./chevron-up";
+export { default as Search } from "./search";
 
 // Default-Map (für <Icon name="...">)
 import Sun from "./sun";
@@ -28,6 +29,7 @@ import Share from "./share";
 import Ellipsis from "./ellipsis";
 import ChevronDown from "./chevron-down";
 import ChevronUp from "./chevron-up";
+import Search from "./search";
 
 export default {
     sun: Sun,
@@ -45,4 +47,5 @@ export default {
     "chevron-up": ChevronUp,
     chevrondown: ChevronDown,
     chevronup: ChevronUp,
+    search: Search,
 };
