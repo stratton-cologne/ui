@@ -10,6 +10,7 @@ export { default as ThemeSwitcher } from "./entries/theme-toggle";
 export { default as Dropdown } from "./components/dropdown.vue";
 export { default as TabPanel } from "./components/tab-panel.vue";
 export { default as Toolbar } from "./components/toolbar.vue";
+export { default as SearchField } from "./components/search.vue";
 
 // icons
 export { default as Icon } from "./components/icon.vue";

@@ -1,6 +1,9 @@
 {
-    "theme-switcher": "theme-toggle.vue",
-    "theme-toggle": "theme-toggle.vue",
     "breadcrumb": "breadcrumb.vue",
-    "dropdown": "dropdown.vue"
+    "theme-toggle": "theme-toggle.vue",
+    "theme-switcher": "theme-toggle.vue",
+    "dropdown": "dropdown.vue",
+    "tab-panel": "tab-panel.vue",
+    "toolbar": "toolbar.vue",
+    "search": "search.vue"
 }
