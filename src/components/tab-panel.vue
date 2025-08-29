@@ -1,8 +1,8 @@
 <!-- src/components/tab-panel.vue -->
 <template>
     <!-- Panel -->
-    <aside v-bind="$attrs" data-component="sc-tab-panel" :style="{ width: computedWidth }" role="dialog"
-        aria-modal="true">
+    <aside v-bind="$attrs" :id="rootId" data-id="stratton" data-component="sc-tab-panel" :data-instance="instanceAttr"
+        :data-width="widthAttr" role="dialog" aria-modal="true">
         <!-- Tabs -->
         <div data-role="tablist" role="tablist" :aria-label="t('tab-panel.sectionLabel', {}, 'Sektionen')"
             aria-orientation="horizontal" ref="tablistRef" @keydown.prevent.stop="onKeydown">
@@ -47,15 +47,30 @@ import { useTablistNav } from '../composables/useTablistNav'
 import { useUiI18n } from '../i18n'
 
 export type TabKey = string
-export interface TabItem { key: TabKey; label: string; icon?: string; badge?: number | string; disabled?: boolean }
+export interface TabItem {
+    key: TabKey
+    label: string
+    icon?: string
+    badge?: number | string
+    disabled?: boolean
+}
 
 const props = withDefaults(defineProps<{
     tabs: TabItem[]
     activeTab?: TabKey
     title?: string
+    /** Breite bleibt als Prop bestehen (Kompatibilität),
+     *  wird aber NICHT mehr als Inline-Style gesetzt.
+     *  Sie ist nur noch als data-Attribut verfügbar (data-width),
+     *  Styling erfolgt im Consumer. */
     width?: string | number
     nameForInitials?: string
-}>(), { width: '560px' })
+    /** Optional: feste DOM-ID und Instanzkennung am Root */
+    id?: string
+    instance?: string
+}>(), {
+    width: '560px'
+})
 
 const emit = defineEmits<{
     (e: 'update:activeTab', v: TabKey): void
@@ -70,14 +85,19 @@ const { t } = useUiI18n() // nutzt sc.ui.* defaults
 /************ Slots & IDs ************/
 const slots = useSlots()
 const makeId = useStableId('tab-panel')
+
+/** Root-ID & Instance-Attribut */
+const rootId = computed(() => props.id ?? makeId('root'))
+const instanceAttr = computed(() => props.instance ?? makeId('inst'))
+
+/** Tab/Panel IDs */
 const tabId = (k: TabKey) => makeId(`tab-${k}`)
 const panelId = (k: TabKey) => makeId(`panel-${k}`)
 
-/************ Darstellung ************/
-const computedWidth = computed(() => {
+/** data-width: nur als String-Attribut, Styling im Consumer */
+const widthAttr = computed(() => {
     const w = props.width
-    if (typeof w === 'number') return `${w}px`
-    return w ?? '560px'
+    return typeof w === 'number' ? `${w}px` : (w ?? '')
 })
 
 /************ State ************/
