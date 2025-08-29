@@ -57,6 +57,9 @@
                 </tbody>
             </table>
         </div>
+        <div data-role="footer">
+            <slot name="footer" />
+        </div>
     </div>
 </template>
 
