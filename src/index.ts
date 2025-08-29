@@ -12,6 +12,7 @@ export { default as TabPanel } from "./components/tab-panel.vue";
 export { default as Toolbar } from "./components/toolbar.vue";
 export { default as SearchField } from "./components/search.vue";
 export { default as Table } from "./components/table.vue";
+export { default as Pagination } from "./components/pagination.vue";
 
 // icons
 export { default as Icon } from "./components/icon.vue";

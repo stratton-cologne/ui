@@ -22,6 +22,16 @@
                 "viewAccount": "View account",
                 "logout": "Sign out",
                 "user": "User"
+            },
+            "pagination": {
+                "ariaNav": "Pagination",
+                "first": "First Page",
+                "prev": "Previous",
+                "next": "Next",
+                "last": "Last Page",
+                "perPage": "Per Page",
+                "status": "{from}–{to} of {total}",
+                "of": "/ {count}"
             }
         }
     }

@@ -22,6 +22,16 @@
                 "viewAccount": "Konto anzeigen",
                 "logout": "Abmelden",
                 "user": "Nutzer"
+            },
+            "pagination": {
+                "ariaNav": "Seitennavigation",
+                "first": "Erste Seite",
+                "prev": "Zurück",
+                "next": "Weiter",
+                "last": "Letzte Seite",
+                "perPage": "Pro Seite",
+                "status": "{from}–{to} von {total}",
+                "of": "/ {count}"
             }
         }
     }
