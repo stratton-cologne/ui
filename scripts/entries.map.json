@@ -6,5 +6,8 @@
     "tab-panel": "tab-panel.vue",
     "toolbar": "toolbar.vue",
     "search": "search.vue",
-    "table": "table.vue"
+    "table": "table.vue",
+    "pagination": "pagination.vue",
+    "badge": "badge.vue",
+    "./forms": "components/forms/index.ts"
 }

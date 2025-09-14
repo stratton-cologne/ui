@@ -22,6 +22,11 @@
             "import": "./dist/icons/*.es.js",
             "default": "./dist/icons/*.es.js"
         },
+        "./forms": {
+            "types": "./dist/entries/forms.d.ts",
+            "import": "./dist/forms.es.js",
+            "require": "./dist/forms.cjs"
+        },
         "./*": {
             "types": "./dist/*.d.ts",
             "import": "./dist/*.es.js",
@@ -30,6 +35,9 @@
     },
     "typesVersions": {
         "*": {
+            "forms": [
+                "dist/entries/forms.d.ts"
+            ],
             "*": [
                 "dist/*.d.ts",
                 "dist/entries/*.d.ts"
