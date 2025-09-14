@@ -7,8 +7,10 @@ export { default as Menu } from "./menu";
 export { default as MenuSolid } from "./menu-solid";
 export { default as MenuHero } from "./menu-hero";
 export { default as Home } from "./home";
+export { default as HomeAlt } from "./home-alt";
 export { default as User } from "./user";
 export { default as Users } from "./users";
+export { default as UsersAlt } from "./users-alt";
 export { default as Share } from "./share";
 export { default as Ellipsis } from "./ellipsis";
 
@@ -20,6 +22,10 @@ export { default as ChevronsDown } from "./chevrons-down";
 export { default as ChevronsUp } from "./chevrons-up";
 export { default as ChevronsLeft } from "./chevrons-left";
 export { default as ChevronsRight } from "./chevrons-right";
+
+export { default as Cart } from "./cart";
+export { default as Package } from "./package";
+export { default as Settings } from "./settings";
 
 export { default as Search } from "./search";
 
