@@ -26,7 +26,7 @@ export { default as ChevronsRight } from "./chevrons-right";
 export { default as Cart } from "./cart";
 export { default as Package } from "./package";
 export { default as Settings } from "./settings";
-
+export { default as LineChart } from "./line-chart";
 export { default as Search } from "./search";
 
 // Default-Map (für <Icon name="...">)
@@ -37,8 +37,10 @@ import Menu from "./menu";
 import MenuSolid from "./menu-solid";
 import MenuHero from "./menu-hero";
 import Home from "./home";
+import HomeAlt from "./home-alt";
 import User from "./user";
 import Users from "./users";
+import UsersAlt from "./users-alt";
 import Share from "./share";
 import Ellipsis from "./ellipsis";
 
@@ -52,6 +54,11 @@ import ChevronsLeft from "./chevrons-left";
 import ChevronsRight from "./chevrons-right";
 
 import Search from "./search";
+import Cart from "./cart";
+import Package from "./package";
+import Package2 from "./package-2";
+import Settings from "./settings";
+import LineChart from "./line-chart";
 
 export default {
     sun: Sun,
@@ -61,8 +68,10 @@ export default {
     "menu-hero": MenuHero,
     "home-hero": Home,
     home: Home,
+    "home-alt": HomeAlt,
     user: User,
     users: Users,
+    "users-alt": UsersAlt,
     share: Share,
     ellipsis: Ellipsis,
 
@@ -77,6 +86,12 @@ export default {
     "chevrons-up": ChevronsUp,
     "chevrons-left": ChevronsLeft,
     "chevrons-right": ChevronsRight,
+
+    cart: Cart,
+    package: Package,
+    "package-2": Package2,
+    settings: Settings,
+    "line-chart": LineChart,
 
     // 🇩🇪 deutsche Aliasse
     "chevron-doppel-down": ChevronsDown,
