@@ -14,6 +14,7 @@ export { default as SearchField } from "./components/search.vue";
 export { default as Table } from "./components/table.vue";
 export { default as Pagination } from "./components/pagination.vue";
 export { default as Badge } from "./components/badge.vue";
+export { default as Tooltip } from "./components/tooltip.vue";
 
 // icons
 export { default as Icon } from "./components/icon.vue";

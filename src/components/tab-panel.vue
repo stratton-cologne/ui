@@ -4,7 +4,7 @@
     <aside v-bind="$attrs" :id="rootId" data-id="stratton" data-component="sc-tab-panel" :data-instance="instanceAttr"
         :data-width="widthAttr" role="dialog" aria-modal="true">
         <!-- Tabs -->
-        <div data-role="tablist" role="tablist" :aria-label="t('tab-panel.sectionLabel', {}, 'Sektionen')"
+        <div data-role="tab-list" role="tab-list" :aria-label="t('tab-panel.sectionLabel', {}, 'Sections')"
             aria-orientation="horizontal" ref="tablistRef" @keydown.prevent.stop="onKeydown">
             <button v-for="t in tabs" :key="t.key" role="tab" :id="tabId(t.key)" :aria-controls="panelId(t.key)"
                 :aria-selected="t.key === currentTab" :aria-disabled="!!t.disabled"
