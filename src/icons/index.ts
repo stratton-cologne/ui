@@ -59,6 +59,7 @@ import Package from "./package";
 import Package2 from "./package-2";
 import Settings from "./settings";
 import LineChart from "./line-chart";
+import Heart from "./heart";
 
 export default {
     sun: Sun,
@@ -74,6 +75,7 @@ export default {
     "users-alt": UsersAlt,
     share: Share,
     ellipsis: Ellipsis,
+    heart: Heart,
 
     // single chevrons
     "chevron-down": ChevronDown,
