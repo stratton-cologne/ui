@@ -22,6 +22,8 @@ export { default as ChevronsDown } from "./chevrons-down";
 export { default as ChevronsUp } from "./chevrons-up";
 export { default as ChevronsLeft } from "./chevrons-left";
 export { default as ChevronsRight } from "./chevrons-right";
+export { default as Heart } from "./heart";
+export { default as Copyright } from "./copyright";
 
 export { default as Cart } from "./cart";
 export { default as Package } from "./package";
@@ -60,6 +62,7 @@ import Package2 from "./package-2";
 import Settings from "./settings";
 import LineChart from "./line-chart";
 import Heart from "./heart";
+import Copyright from "./copyright";
 
 export default {
     sun: Sun,
@@ -76,6 +79,7 @@ export default {
     share: Share,
     ellipsis: Ellipsis,
     heart: Heart,
+    copyright: Copyright,
 
     // single chevrons
     "chevron-down": ChevronDown,
