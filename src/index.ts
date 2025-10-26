@@ -15,10 +15,17 @@ export { default as Table } from "./components/table.vue";
 export { default as Pagination } from "./components/pagination.vue";
 export { default as Badge } from "./components/badge.vue";
 export { default as Tooltip } from "./components/tooltip.vue";
+export { default as Button } from "./components/button.vue";
 
 // icons
 export { default as Icon } from "./components/icon.vue";
 export * as icons from "./icons";
 export { Sun, Moon, Menu, MenuSolid, MenuHero, Home, Search } from "./icons";
+
+import {
+    iconNameByExtension,
+    iconNameByMime,
+} from "./icons/_helpers/fileIconMap";
+export { iconNameByExtension, iconNameByMime };
 
 export { default } from "./entries/theme-toggle";
