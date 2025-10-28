@@ -1,51 +1,59 @@
 <!-- src/components/theme-toggle.vue -->
 <template>
-    <button data-id="stratton" type="button" :aria-label="computedAriaLabel" :aria-pressed="isDark" @click="toggle">
-        <!-- Slot-API: Werte NUR an den Slot geben, nicht als DOM-Attribute -->
+    <button v-bind="$attrs" :id="rootId" data-id="stratton" data-component="sc-theme-toggle"
+        :data-instance="instanceAttr" type="button" :aria-label="computedAriaLabel" :aria-pressed="isDark"
+        @click="toggle">
+        <!-- Slot-API: Werte nur als Slot-Props bereitstellen -->
         <slot :isDark="isDark" :toggle="toggle" :theme="theme" :setTheme="setTheme">
-            <!-- Default-Content (ohne Klassen) -->
-            <span aria-hidden="true">
-                <component v-if="hasLucide" is="lucide-icon" :name="isDark ? 'Moon' : 'Sun'" />
-                <span style="margin-right: 5px;" v-else>{{ isDark ? '☀️' : '🌙' }}</span>
+            <!-- Default-Content ohne Styles/Klassen -->
+            <span aria-hidden="true" data-role="icon">
+                <Icon :name="isDark ? 'Sun' : 'Moon'" />
             </span>
-            <span>{{ labelText }}</span>
+            <span data-role="label">{{ labelText }}</span>
         </slot>
     </button>
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance } from 'vue'
+import { computed, withDefaults } from 'vue'
 import { useUiI18n } from '../i18n'
 import { useTheme } from '../composables/useTheme'
+import { useStableId } from '../composables/useStableId'
+import Icon from '../icons/'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     /** Überschreibt das aria-label komplett */
     ariaLabel?: string
     /** Statisches Label (überschreibt mode-spezifisches Label) */
     label?: string
-    /** Optional: individuelles Fallback für Light-/Dark-Label */
+    /** Individuelle Fallbacks für Light-/Dark-Label */
     labelLight?: string
     labelDark?: string
-}>()
+    /** Optional: feste ID und Instanz */
+    id?: string
+    instance?: string
+}>(), {})
 
 const { theme, isDark, toggleTheme: toggle, setTheme } = useTheme()
 const { t } = useUiI18n('theme-toggle')
 
-// Prüfen, ob der Consumer <lucide-icon> global registriert hat
-const inst = getCurrentInstance()
-const hasLucide = !!inst?.appContext.components?.['lucide-icon']
+/** IDs / Instance */
+const makeId = useStableId('theme-toggle')
+const rootId = computed(() => props.id ?? makeId('root'))
+const instanceAttr = computed(() => props.instance ?? makeId('inst'))
 
-// i18n-Label je Modus (mit sinnvollen Fallbacks)
+/** i18n-Label pro Modus + Fallbacks */
 const modeKey = computed(() => (isDark.value ? 'label.light' : 'label.dark'))
 const modeFallback = computed(() =>
-    isDark.value ? (props.labelLight ?? 'Hellen Modus aktivieren')
+    isDark.value
+        ? (props.labelLight ?? 'Hellen Modus aktivieren')
         : (props.labelDark ?? 'Dunklen Modus aktivieren')
 )
 
 const labelText = computed(() => props.label ?? t(modeKey.value, {}, modeFallback.value))
 const computedAriaLabel = computed(() => props.ariaLabel ?? labelText.value)
 
-// (optional) TS-Intellisense für die Slot-Props
+/** Slot-Typing (optional für TS-Intellisense) */
 defineSlots<{
     default(props: {
         isDark: boolean
