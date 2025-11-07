@@ -1,6 +1,6 @@
 {
     "name": "@stratton-cologne/ui",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "type": "module",
     "main": "./dist/index.umd.cjs",
     "module": "./dist/index.es.js",

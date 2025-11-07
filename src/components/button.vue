@@ -3,8 +3,8 @@
     <component :is="tagName" v-bind="$attrs" :id="rootId" data-id="stratton" data-component="sc-button"
         :data-instance="instanceAttr" :data-variant="variant" :data-tone="tone" :data-size="size"
         :data-block="block || null" :data-loading="loading || null" :data-disabled="isDisabled || null"
-        :type="isNativeButton ? type : undefined" :href="hrefAttr" :target="href ? target : undefined"
-        :rel="href && rel ? rel : undefined" :aria-busy="loading ? 'true' : undefined"
+        :type="isNativeButton ? type : undefined" :to="isRouterLink ? to : undefined" :href="hrefAttr"
+        :target="href ? target : undefined" :rel="relAttr" :aria-busy="loading ? 'true' : undefined"
         :aria-disabled="isDisabled ? 'true' : undefined" :disabled="isNativeButton ? isDisabled : undefined"
         role="button" @click="onClick" @keydown.space.prevent="onKeyActivate" @keydown.enter.prevent="onKeyActivate">
         <!-- Prefix-Icon/Content -->
@@ -30,8 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, withDefaults, useAttrs } from 'vue'
-import { RouterLink } from 'vue-router'
+import { computed, withDefaults, useAttrs, getCurrentInstance } from 'vue'
 import { useStableId } from '../composables/useStableId'
 
 type Variant = 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
@@ -57,8 +56,8 @@ const props = withDefaults(defineProps<{
     href?: string
     target?: '_self' | '_blank' | '_parent' | '_top'
     rel?: string
-    /** Router-Ziel – wenn gesetzt, wird <RouterLink> gerendert */
-    to?: string | Record<string, any>
+    /** Router-Ziel – wenn gesetzt, wird <RouterLink> gerendert (falls Router vorhanden) */
+    to?: any
     /** Stabile ID/Instanz für selektierbares Styling */
     id?: string
     instance?: string
@@ -70,27 +69,42 @@ const props = withDefaults(defineProps<{
     disabled: false,
     loading: false,
     block: false,
+    target: '_self',
 })
 
-const emit = defineEmits<{
-    (e: 'click', ev: MouseEvent): void
-}>()
+const emit = defineEmits<{ (e: 'click', ev: MouseEvent): void }>()
 
 const makeId = useStableId('button')
 const rootId = computed(() => props.id ?? makeId('root'))
 const attrs = useAttrs()
-const instanceAttr = computed(() => (props.instance ?? (attrs['data-instance'] as string) ?? makeId('inst')))
+const instanceAttr = computed(
+    () => props.instance ?? (attrs['data-instance'] as string | undefined) ?? makeId('inst')
+)
 
-const isDisabled = computed(() => props.disabled || props.loading)
+/** Router dynamisch erkennen (ohne Import) */
+const inst = getCurrentInstance()
+const hasRouter = !!(inst?.appContext.config.globalProperties as any)?.$router
+
+const isRouterLink = computed(() => hasRouter && !!props.to)
 const isNativeButton = computed(() => !props.href && !props.to)
+const isDisabled = computed(() => props.disabled || props.loading)
 
+/** Element-Typ dynamisch wählen */
 const tagName = computed(() => {
-    if (props.to) return RouterLink
+    if (isRouterLink.value) return 'RouterLink'
     if (props.href) return 'a'
     return 'button'
 })
 
+/** href nur setzen, wenn vorhanden */
 const hrefAttr = computed(() => (props.href ? props.href : undefined))
+
+/** rel-Sicherheit für target=_blank, falls Consumer nichts setzt */
+const relAttr = computed(() => {
+    if (!props.href) return undefined
+    if (props.rel) return props.rel
+    return props.target === '_blank' ? 'noopener noreferrer' : undefined
+})
 
 function onClick(e: MouseEvent) {
     if (isDisabled.value) {
@@ -101,6 +115,7 @@ function onClick(e: MouseEvent) {
     emit('click', e)
 }
 
+/** Enter/Space für nicht-native Buttons „klickbar“ machen */
 function onKeyActivate(e: KeyboardEvent) {
     // Tastaturaktivierung auch für <a> / <RouterLink>, falls gewünscht
     if (isDisabled.value) return

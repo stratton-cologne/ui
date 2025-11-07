@@ -6,9 +6,13 @@
             <li v-for="(item, i) in crumbs" :key="item.path ?? i" data-role="item"
                 :data-last="i === crumbs.length - 1 || null">
                 <slot name="item" :item="resolvedItem(item)" :index="i" :is-last="i === crumbs.length - 1">
-                    <RouterLink v-if="i < crumbs.length - 1 && item.path" :to="item.path" data-role="link">
+                    <!-- Link-Rendering: RouterLink wenn verfügbar, sonst <a> -->
+                    <component v-if="i < crumbs.length - 1 && item.path" :is="linkComponent"
+                        :to="hasRouter ? item.path : undefined" :href="!hasRouter ? item.path : undefined"
+                        data-role="link">
                         {{ resolvedItem(item).label }}
-                    </RouterLink>
+                    </component>
+
                     <span v-else data-role="current" aria-current="page">
                         {{ resolvedItem(item).label }}
                     </span>
@@ -23,8 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, withDefaults, useAttrs } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
+import { computed, withDefaults, useAttrs, getCurrentInstance } from 'vue'
 import { useUiI18n } from '../i18n'
 import { useStableId } from '../composables/useStableId'
 
@@ -49,8 +52,12 @@ const props = withDefaults(defineProps<{
 
 const attrs = useAttrs()
 const { t } = useUiI18n('breadcrumb')
-const route = useRoute()
 const makeId = useStableId('breadcrumb')
+
+/** Erkennen, ob ein Router installiert ist (ohne import 'vue-router') */
+const inst = getCurrentInstance()
+const hasRouter = !!(inst?.appContext.config.globalProperties as any)?.$router
+const linkComponent = computed(() => (hasRouter ? 'RouterLink' : 'a'))
 
 /** Nur erlaubte Attrs durchreichen (ohne instance / data-instance) */
 const rootAttrs = computed(() => {
@@ -70,7 +77,7 @@ const instanceAttr = computed(
 const computedAriaLabel = computed(() => props.ariaLabel ?? t('ariaLabel', {}, 'Breadcrumb'))
 const separatorText = computed(() => props.separator ?? t('separator', {}, '›'))
 
-/** Route → Crumb */
+/** Route → Crumb (über $route statt useRoute) */
 function mapRecordToCrumb(r: any): Crumb {
     return {
         path: r.path || undefined,
@@ -79,9 +86,16 @@ function mapRecordToCrumb(r: any): Crumb {
 }
 
 const baseCrumbs = computed<Crumb[]>(() => {
+    // 1) explizite Items?
     if (props.items?.length) return props.items
-    if (!props.fromRouter) return []
-    return route.matched.map(mapRecordToCrumb)
+
+    // 2) Router-basiert?
+    if (!props.fromRouter || !hasRouter) return []
+
+    // $route ist reaktiv über globalProperties
+    const currentRoute = (inst?.proxy as any)?.$route
+    if (!currentRoute?.matched) return []
+    return currentRoute.matched.map(mapRecordToCrumb)
 })
 
 const crumbs = computed<Crumb[]>(() => {
@@ -98,3 +112,5 @@ function resolvedItem(item: Crumb): Required<Pick<Crumb, 'label'>> & Pick<Crumb,
     return { label: item.label ?? '', path: item.path }
 }
 </script>
+
+<!-- keine Styles: komplett konsumergesteuertes Styling -->

@@ -35,6 +35,7 @@ Homestead.json
 Homestead.yaml
 .phpunit.result.cache
 *.tgz
+diff.txt
 
 ############################################################
 # Node Module und Build-Artefakte

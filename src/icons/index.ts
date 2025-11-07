@@ -16,6 +16,16 @@ export { default as ChevronsDown } from "./chevrons-down";
 export { default as ChevronsLeft } from "./chevrons-left";
 export { default as ChevronsRight } from "./chevrons-right";
 export { default as ChevronsUp } from "./chevrons-up";
+
+export { default as MoveLeft } from "./move-left";
+export { default as MoveRight } from "./move-right";
+export { default as MoveUp } from "./move-up";
+export { default as MoveDown } from "./move-down";
+export { default as MoveUpLeft } from "./move-up-left";
+export { default as MoveUpRight } from "./move-up-right";
+export { default as MoveDownLeft } from "./move-down-left";
+export { default as MoveDownRight } from "./move-down-right";
+
 export { default as Home } from "./home";
 export { default as HomeAlt } from "./home-alt";
 export { default as Menu } from "./menu";
@@ -73,6 +83,8 @@ export { default as Timer } from "./timer";
 export { default as Copyright } from "./copyright";
 export { default as Eye } from "./eye";
 
+export { default as Bell } from "./bell";
+export { default as X } from "./x";
 // ---------------------------------------------------------
 // Default-Map für <Icon name="...">
 // – konsistente kebab-case Keys
@@ -90,6 +102,16 @@ import ChevronsDown from "./chevrons-down";
 import ChevronsLeft from "./chevrons-left";
 import ChevronsRight from "./chevrons-right";
 import ChevronsUp from "./chevrons-up";
+
+import MoveLeft from "./move-left";
+import MoveRight from "./move-right";
+import MoveUp from "./move-up";
+import MoveDown from "./move-down";
+import MoveUpLeft from "./move-up-left";
+import MoveUpRight from "./move-up-right";
+import MoveDownLeft from "./move-down-left";
+import MoveDownRight from "./move-down-right";
+
 import Home from "./home";
 import HomeAlt from "./home-alt";
 import Menu from "./menu";
@@ -141,6 +163,10 @@ import Server from "./server";
 import Timer from "./timer";
 import Copyright from "./copyright";
 import Eye from "./eye";
+
+import Bell from "./bell";
+
+import X from "./x";
 
 const deAliases = {
     // Theme
@@ -251,6 +277,23 @@ const deAliases = {
     word: FileText,
     excel: FileTable,
     powerpoint: FilePresentation,
+
+    klingel: Bell,
+    schließen: X,
+    schliessen: X,
+    kreuz: X,
+    beenden: X,
+    ausblenden: X,
+
+    // Arrow (deutsch)
+    "pfeil-links": MoveLeft,
+    "pfeil-rechts": MoveRight,
+    "pfeil-oben": MoveUp,
+    "pfeil-unten": MoveDown,
+    "pfeil-oben-links": MoveUpLeft,
+    "pfeil-oben-rechts": MoveUpRight,
+    "pfeil-unten-links": MoveDownLeft,
+    "pfeil-unten-rechts": MoveDownRight,
 };
 
 export default {
@@ -381,5 +424,30 @@ export default {
     "chevron-double-right": ChevronsRight,
     "chevron-double-up": ChevronsUp,
 
+    "move-left": MoveLeft,
+    "move-right": MoveRight,
+    "move-up": MoveUp,
+    "move-down": MoveDown,
+    "move-up-left": MoveUpLeft,
+    "move-up-right": MoveUpRight,
+    "move-down-left": MoveDownLeft,
+    "move-down-right": MoveDownRight,
+
+    // Arrow Aliasse → zeigen auf die gleichen Move-Icons
+    "arrow-left": MoveLeft,
+    "arrow-right": MoveRight,
+    "arrow-up": MoveUp,
+    "arrow-down": MoveDown,
+    "arrow-up-left": MoveUpLeft,
+    "arrow-up-right": MoveUpRight,
+    "arrow-down-left": MoveDownLeft,
+    "arrow-down-right": MoveDownRight,
+
+    x: X,
+    close: X,
+    cross: X,
+    X,
+
+    bell: Bell,
     ...deAliases,
 };
