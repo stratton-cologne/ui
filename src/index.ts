@@ -3,6 +3,9 @@
 export * from "./composables/useTheme";
 export * from "./i18n";
 
+// grid layout
+export * from "./components/grid";
+
 // entries | components
 export { default as Breadcrumb } from "./entries/breadcrumb";
 export { default as ThemeToggle } from "./entries/theme-toggle";
@@ -27,5 +30,13 @@ import {
     iconNameByMime,
 } from "./icons/_helpers/fileIconMap";
 export { iconNameByExtension, iconNameByMime };
+
+export {
+    Flag,
+    getFlagUrl,
+    getFlagIcon,
+    normalizeCode,
+    type FlagRatio,
+} from "./icons/flags";
 
 export { default } from "./entries/theme-toggle";

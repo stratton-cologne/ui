@@ -17,6 +17,8 @@ export { default as ChevronsLeft } from "./chevrons-left";
 export { default as ChevronsRight } from "./chevrons-right";
 export { default as ChevronsUp } from "./chevrons-up";
 
+export { default as Languages } from "./languages";
+
 export { default as MoveLeft } from "./move-left";
 export { default as MoveRight } from "./move-right";
 export { default as MoveUp } from "./move-up";
@@ -85,6 +87,17 @@ export { default as Eye } from "./eye";
 
 export { default as Bell } from "./bell";
 export { default as X } from "./x";
+
+export * as Flags from "./flags";
+export { default as FlagIcon } from "./flags/FlagIcon.vue";
+export {
+    Flag,
+    getFlagUrl,
+    getFlagIcon,
+    normalizeCode,
+    type FlagRatio,
+} from "./flags";
+
 // ---------------------------------------------------------
 // Default-Map für <Icon name="...">
 // – konsistente kebab-case Keys
@@ -111,6 +124,8 @@ import MoveUpLeft from "./move-up-left";
 import MoveUpRight from "./move-up-right";
 import MoveDownLeft from "./move-down-left";
 import MoveDownRight from "./move-down-right";
+
+import Languages from "./languages";
 
 import Home from "./home";
 import HomeAlt from "./home-alt";
@@ -294,6 +309,13 @@ const deAliases = {
     "pfeil-oben-rechts": MoveUpRight,
     "pfeil-unten-links": MoveDownLeft,
     "pfeil-unten-rechts": MoveDownRight,
+
+    sprachen: Languages,
+    sprache: Languages,
+    uebersetzen: Languages, // ohne Umlaut
+    übersetzen: Languages, // mit Umlaut
+    lokalisierung: Languages,
+    mehrsprachig: Languages,
 };
 
 export default {
@@ -442,6 +464,11 @@ export default {
     "arrow-up-right": MoveUpRight,
     "arrow-down-left": MoveDownLeft,
     "arrow-down-right": MoveDownRight,
+
+    languages: Languages,
+    lang: Languages,
+    i18n: Languages,
+    translate: Languages,
 
     x: X,
     close: X,
